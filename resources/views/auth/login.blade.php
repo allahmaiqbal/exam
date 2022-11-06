@@ -1,5 +1,42 @@
 <x-guest-layout>
-    <x-auth-card>
+
+    <div class="card">
+        <div class="card-header">
+          Login
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Entaer your Email"  aria-describedby="emailHelp">
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter your password" id="exampleInputPassword1">
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                </div>
+                     <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+
+              @if(Route::has('register'))
+              <div class="text-center">
+                  <p> yet registered? <a href="{{ route('register') }}">Register</a></p>
+              </div>
+              @endif
+          </div>
+        </div>
+        <div class="card-footer text-muted">
+            <p></p>
+        </div>
+    </div>
+
+    {{-- <x-auth-card>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -53,5 +90,5 @@
                 </x-primary-button>
             </div>
         </form>
-    </x-auth-card>
+    </x-auth-card> --}}
 </x-guest-layout>

@@ -14,9 +14,19 @@
         @vite(['resources/css/app.css','resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{-- {{ $slot }} --}}
+        {{-- <div class="font-sans text-gray-900 antialiased">
+            {{ $slot }}
 
+        </div> --}}
+
+        <div class="container min-vh-100 d-flex justify-content-center">
+            <div class="align-self-center" style="min-width: 40%;">
+               <div class="row">
+                  <div class="col-sm-12">
+                      {{$slot}}
+                  </div>
+               </div>
+            </div>
         </div>
     </body>
 </html>
