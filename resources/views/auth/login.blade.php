@@ -5,20 +5,25 @@
           Login
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('login') }}">
+            <form  method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Entaer your Email"  aria-describedby="emailHelp">
+                    <input type="email" name="email" value="{{old('email')}}" class="form-control" id="exampleInputEmail1" placeholder="Entaer your Email"  aria-describedby="emailHelp">
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div> --}}
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" name="email"  value ="{{old('email')}}" id="email" placeholder="Entaer your Email"  aria-describedby="emailHelp">
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Enter your password" id="exampleInputPassword1">
+                    <input type="password"   name="password" class="form-control" placeholder="Enter your password" id="exampleInputPassword1">
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox"  class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Remember me</label>
                 </div>
                      <button type="submit" class="btn btn-primary">Submit</button>
