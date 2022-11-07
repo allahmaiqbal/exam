@@ -21,4 +21,15 @@ class Post extends Model
     {
        return $this->belongsTo(User::class,'user_id');
     }
+
+    public function isPublished():bool
+    {
+     return $this->published_at == null;
+    }
+
+
+    public function scopePopular($query)
+    {
+        return $query->where('user_id',auth()->id());
+    }
 }

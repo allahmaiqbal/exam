@@ -1,6 +1,9 @@
 <x-app-layout>
     <div class="container">
         <div class="row">
+            <div class="mb-3">
+                 <a class="btn btn-warning" href="{{route('dashboard.post.index')}}">All Post</a>
+            </div>
             <div class="col-md-6">
 
                 <div class="card ">

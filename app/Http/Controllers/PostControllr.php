@@ -16,7 +16,23 @@ class PostControllr extends Controller
      */
     public function index()
     {
-        //
+        $post_query = Post::query();
+
+        // eager load author
+        $post_query->with('author:id,name');
+
+        // load current user's post
+        //  $post_query->ofCurrentUser();
+
+        if (request('orderBy') === 'oldest') {
+            $post_query->oldest('published_at');
+        } else {
+            $post_query->latest('published_at');
+        }
+
+        $posts = $post_query->paginate();
+
+        return view('post.index',compact('posts'));
     }
 
     /**
@@ -37,11 +53,10 @@ class PostControllr extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-    //    return $request->all();
-       $request->validated();
-        $ALL_validated_data = $request->validated();
-        Post::create($ALL_validated_data);
 
+        $request->validated();
+        $All_validated_data = $request->validated();
+        Post::create($All_validated_data);
         return redirect() ->back()->with('Post Add Succssfully');
     }
 
