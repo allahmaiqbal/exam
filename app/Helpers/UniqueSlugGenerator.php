@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Helpers;
-
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -13,20 +13,26 @@ class UniqueSlugGenerator
     public static function builder(
         string $model,
         string $value,
-        string $column = 'slug'
+        string $column = 'slug',
+        ?string $except = null,
+        ?string $exceptColumnName = 'id'
       ): static
     {
         return new static(
             $model,
              $value,
-             $column
+             $column,
+             $except, $exceptColumnName
             );
     }
 
     public function __construct(
         protected string $model,
         protected string $value,
-        protected string $column = 'slug')
+        protected string $column = 'slug',
+        protected  ? string $except = null,
+        protected  ? string $exceptColumnName = 'id'
+        )
     {
         $this->slug = Str::slug($value);
     }
@@ -49,7 +55,8 @@ class UniqueSlugGenerator
         }
 
         $is_exists = $model->where($this->column, $slug)
-            ->exists();
+        ->when($this->except, fn(Builder $query): Builder => $query->whereNot($this->exceptColumnName, $this->except))
+        ->exists();
         if (!$is_exists) {
             return $slug;
         }

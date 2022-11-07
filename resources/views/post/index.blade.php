@@ -25,15 +25,34 @@
                     @foreach ($posts as $post )
                     <div class="col">
                         <div class="card">
-                                <p class="text-end">
-                                    <span @class([ 'badge' , 'text-bg-warning'=> !$post->isPublished(), 'text-bg-success'
-                                        => $post->isPublished() ])>
-                                        @if(!$post->isPublished())
-                                        Not
-                                        @endif
-                                        Published
-                                    </span>
-                                </p>
+                            <div class="text-end">
+                                <a href="{{ route('dashboard.post.show', $post->id) }}" class="badge text-bg-primary"
+                                    title="View Details">
+                                  edit
+                                </a>
+                                <a href="{{ route('dashboard.post.edit', $post->id)  }}" class="badge text-bg-info"
+                                    title="Edit Post">
+                                    edit
+                                </a>
+                                <form action="{{ route('dashboard.post.destroy', $post->id) }}" method="POST"
+                                    class="badge text-bg-danger align-top position-relative"
+                                    onsubmit="return confirm('Are you sure want to delete this post?')">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" title="Delete Post" class="stretched-link">
+
+                                    </button>
+                                </form>
+                            </div
+                            <p class="text-end">
+                                <span @class([ 'badge' , 'text-bg-warning'=> !$post->isPublished(), 'text-bg-success'
+                                    => $post->isPublished() ])>
+                                    @if(!$post->isPublished())
+                                    Not
+                                    @endif
+                                    Published
+                                </span>
+                            </p>
                             {{-- <img src="..." class="card-img-top" alt="..."> --}}
                             <div class="card-header">
                                 <p></p>
@@ -41,11 +60,10 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="card-text">{{ $post->content }}</p>
-                                <p>Pubished by: {{ $post->author->name }}</p>
+                                <p>Author Name: {{ $post->author->name }}</p>
                             </div>
                             <div class="card-footer">
-                                <p>Pubished by: {{ $post->author->name }}</p>
-                                <small class="text-muted">Last updated {{ $post->updated_at->diffForHumans() }}</small>
+                                <small class="text-muted"> Latest Update: {{ $post->updated_at->diffForHumans() }}</small>
                             </div>
                         </div>
                     </div>

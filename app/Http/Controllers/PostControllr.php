@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
@@ -79,7 +80,9 @@ class PostControllr extends Controller
      */
     public function edit($id)
     {
-        //
+
+       $post = Post::findOrFail($id);
+        return view('post.edit',compact('post'));
     }
 
     /**
@@ -89,9 +92,16 @@ class PostControllr extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
-        //
+        // $request->validated();
+
+        $post = Post::findOrFail($id);
+    //   $All_validated_data = $request->validated();
+        // Post::create($All_validated_data);
+        $post->update($request->validated());
+        return redirect() ->back()->with('Post Edit Succssfully');
+
     }
 
     /**

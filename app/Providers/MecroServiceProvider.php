@@ -28,8 +28,8 @@ class MecroServiceProvider extends ServiceProvider
     public function boot()
     {
          //
-         Str::macro('uniqueSlug', function (string $model, string $value, string $column = 'slug' ) {
-            return UniqueSlugGenerator::builder($model, $value, $column,)
+         Str::macro('uniqueSlug', function (string $model, string $value, string $column = 'slug', ?string $except = null, ?string $exceptColumnName = 'id' ) {
+            return UniqueSlugGenerator::builder($model, $value, $column,$except, $exceptColumnName)
                 ->generate();
         });
     }
