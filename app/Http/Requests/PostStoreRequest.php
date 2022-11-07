@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Post;
+use Illuminate\Support\Str;
+use App\Helpers\UniqueSlugGenerator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostStoreRequest extends FormRequest
@@ -13,7 +16,7 @@ class PostStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +27,20 @@ class PostStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|string|max:50',
+            'content' => 'required|string|max:1000',
+            'is_published' => 'required|boolean',
+
+        ];
+    }
+    public function validated($key = null, $default = null)
+    {
+        $validated = parent::validated();
+
+        return $validated + [
+            'slug'=>Str::uniqueSlug(Post::class,$this->title),
+            'published_at'=>$this->boolean('is_published')?now():null,
+            'user_id'=>auth()->id(),
         ];
     }
 }

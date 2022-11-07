@@ -42,9 +42,9 @@
               </div>
               @endif
           </div>
-        </div>
-        <div class="card-footer text-muted">
-            <p> & copyright  </p>
+          <div class="card-footer text-muted">
+            <p class="text-center">&copy {{config('app.name')}} - {{Date('Y')}}</p>
+         </div>
         </div>
     </div>
     {{-- <x-auth-card>

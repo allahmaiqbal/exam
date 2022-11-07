@@ -8,10 +8,11 @@
                       post create
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action ="{{route('dashboard.post.store')}}" method="POST">
+                            @csrf
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Title</label>
-                              <input type="text" name="title" class="form-control" placeholder="title" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <input type="text" name="title"  value="{{old('title')}}"class="form-control" placeholder="title" id="exampleInputEmail1" aria-describedby="emailHelp">
 
                             </div>
 
@@ -30,10 +31,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
-
                   </div>
-
-
             </div>
         </div>
     </div>

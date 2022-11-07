@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostStoreRequest;
+use App\Models\Post;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 class PostControllr extends Controller
@@ -32,9 +35,14 @@ class PostControllr extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostStoreRequest $request)
     {
-        return $request->all();
+    //    return $request->all();
+       $request->validated();
+        $ALL_validated_data = $request->validated();
+        Post::create($ALL_validated_data);
+
+        return redirect() ->back()->with('Post Add Succssfully');
     }
 
     /**
