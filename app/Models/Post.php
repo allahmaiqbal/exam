@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'title',
@@ -16,20 +17,36 @@ class Post extends Model
         'published_at',
     ];
 
+    /*  === Start Relation Ship  ===  */
 
     public function author()
     {
-       return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function isPublished():bool
-    {
-     return $this->published_at == null;
-    }
+    /*  === Start Relation Ship  ===  */
 
+    /*  === Local Scope start  ===  */
 
     public function scopePopular($query)
     {
-        return $query->where('user_id',auth()->id());
+        return $query->where('user_id', auth()->id());
     }
+
+    /*  === Local Scope end  ===  */
+
+    /*  **===** All Custom Method **===**  */
+
+    /**
+     * Undocumented function
+     * cheeck published is not
+     * @return boolean
+     */
+
+    public function isPublished(): bool
+    {
+        return $this->published_at == null;
+    }
+
+    /*  **===** All Custom Method **===**  */
 }

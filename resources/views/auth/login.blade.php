@@ -26,9 +26,9 @@
               </form>
 
               @if(Route::has('register'))
-              <div class="text-center">
-                  <p> yet registered? <a href="{{ route('register') }}">Register</a></p>
-              </div>
+                <div class="text-center">
+                    <p> Yet Registered? <a href="{{ route('register') }}">Register</a></p>
+                </div>
               @endif
           </div>
 

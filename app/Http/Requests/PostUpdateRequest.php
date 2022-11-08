@@ -27,9 +27,10 @@ class PostUpdateRequest extends FormRequest
             'is_published' => 'required|boolean',
         ];
     }
+
     public function validated($key = null, $default = null)
     {
-        $validated_data = parent::validated();
+       return $validated_data = parent::validated();
 
         return $validated_data + [
             'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug', $this->route()->originalParameter('post')),

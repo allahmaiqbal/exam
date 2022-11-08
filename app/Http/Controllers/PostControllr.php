@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
-use GuzzleHttp\Promise\Create;
-use Illuminate\Http\Request;
 
 class PostControllr extends Controller
 {
@@ -18,9 +16,11 @@ class PostControllr extends Controller
     public function index()
     {
         $post_query = Post::query();
+
         // eager load author
         $post_query->with('author:id,name');
 
+        // order by search
         if (request('orderBy') === 'oldest') {
             $post_query->oldest('created_at');
         } else {
@@ -29,7 +29,7 @@ class PostControllr extends Controller
 
         $posts = $post_query->paginate();
 
-        return view('post.index',compact('posts'));
+        return view('post.index', compact('posts'));
     }
 
     /**
@@ -50,11 +50,13 @@ class PostControllr extends Controller
      */
     public function store(PostStoreRequest $request)
     {
+        $all_validated_data = $request->validated();
 
-        $request->validated();
-        $All_validated_data = $request->validated();
-        Post::create($All_validated_data);
-        return redirect() ->back()->with('Post Add Succssfully');
+        Post::create($all_validated_data);
+
+        return redirect()
+            ->back()
+            ->with('Post Add Succssfully');
     }
 
     /**
@@ -66,7 +68,8 @@ class PostControllr extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('post.show',compact('post'));
+
+        return view('post.show', compact('post'));
     }
 
     /**
@@ -79,7 +82,7 @@ class PostControllr extends Controller
     {
 
         $post = Post::findOrFail($id);
-        return view('post.edit',compact('post'));
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -91,12 +94,13 @@ class PostControllr extends Controller
      */
     public function update(PostUpdateRequest $request, $id)
     {
-        // $request->validated();
 
         $post = Post::findOrFail($id);
         $post->update($request->validated());
-        return redirect() ->back()->with('Post Edit Succssfully');
 
+        return redirect()
+            ->back()
+            ->with('Post Edit Succssfully');
     }
 
     /**
@@ -109,7 +113,9 @@ class PostControllr extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect() ->back()->with('Post Delete Succssfully');
 
+        return redirect()
+            ->back()
+            ->with('Post Delete Succssfully');
     }
 }

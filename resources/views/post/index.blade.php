@@ -12,7 +12,7 @@
                     </select>
                     <button type="submit" class="btn btn-success">Search</button>
                 </form>
-           </div>
+            </div>
             <div class="col-md-12">
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     @foreach ($posts as $post )
@@ -28,7 +28,7 @@
                                     Edit
                                 </a>
                                 <form action="{{ route('dashboard.post.destroy', $post->id) }}" method="POST"
-                                    class=" badge text-bg-danger align-top position-relative "
+                                    class="badge text-bg-danger align-top position-relative"
                                     onsubmit="return confirm('Are you sure want to delete this post?')">
                                     @csrf
                                     @method("DELETE")
@@ -40,7 +40,8 @@
                                        Delete
                                     </button>
                                 </form>
-                            </div
+                            </div>
+
                             <p class="text-end">
                                 <span @class([ 'badge' , 'text-bg-warning'=> !$post->isPublished(), 'text-bg-success'
                                     => $post->isPublished() ])>

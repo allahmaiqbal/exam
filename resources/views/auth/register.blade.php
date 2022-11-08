@@ -18,8 +18,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Mobile</label>
-                    <input type="number" class="form-control" name="mobile" value="{{old('mobile')}}" id="exampleInputEmail1" placeholder="Entaer your Email"  aria-describedby="emailHelp">
-                    <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
+                    <input type="text" class="form-control" name="phone" value="{{old('mobile')}}" id="exampleInputEmail1" placeholder="Entaer your Email"  aria-describedby="emailHelp">
+                    <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>

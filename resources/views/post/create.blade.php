@@ -25,10 +25,12 @@
                             </div>
 
                             <div class="mb-3 ">
-                                <label for="exampleFormControlTextarea1" class="form-label">Is_Published</label>
-                                <select class="form-select" name="is_published" aria-label="Default select example">
+                                <label for="is-published" class="form-label">Is_Published</label>
+                                <select class="form-select" name="is_published" id="is-published">
+
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
+
                                 </select>
                             </div>
 
