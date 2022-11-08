@@ -5,13 +5,6 @@
                 <a class="btn btn-info" href="{{route('dashboard.post.create')}}">Create Post</a>
            </div>
            <div class="col-md-6">
-                {{-- <form action ="">
-                    <select name="orderBy" class="form-control form-control-sm">
-                        <option value="latest" @selected(request('orderBy')==='latest' )>Latest</option>
-                        <option value="oldest" @selected(request('orderBy')==='oldest' )>Oldest</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                </form> --}}
                 <form action="">
                     <select name ="orderBy" class="form-control mb-2">
                         <option value="latest" @selected(request('orderBy') === 'latest')> Latest</option>
@@ -28,19 +21,23 @@
                             <div class="text-end">
                                 <a href="{{ route('dashboard.post.show', $post->id) }}" class="badge text-bg-primary"
                                     title="View Details">
-                                  edit
+                                    Show
                                 </a>
                                 <a href="{{ route('dashboard.post.edit', $post->id)  }}" class="badge text-bg-info"
                                     title="Edit Post">
-                                    edit
+                                    Edit
                                 </a>
                                 <form action="{{ route('dashboard.post.destroy', $post->id) }}" method="POST"
-                                    class="badge text-bg-danger align-top position-relative"
+                                    class=" badge text-bg-danger align-top position-relative "
                                     onsubmit="return confirm('Are you sure want to delete this post?')">
                                     @csrf
                                     @method("DELETE")
-                                    <button type="submit" title="Delete Post" class="stretched-link">
-
+                                    <button
+                                        type="submit"
+                                        title="Delete Post"
+                                        class="stretched-link"
+                                    >
+                                       Delete
                                     </button>
                                 </form>
                             </div
@@ -53,15 +50,13 @@
                                     Published
                                 </span>
                             </p>
-                            {{-- <img src="..." class="card-img-top" alt="..."> --}}
-                            <div class="card-header">
-                                <p></p>
-                            </div>
+
                             <div class="card-body">
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="card-text">{{ $post->content }}</p>
                                 <p>Author Name: {{ $post->author->name }}</p>
                             </div>
+
                             <div class="card-footer">
                                 <small class="text-muted"> Latest Update: {{ $post->updated_at->diffForHumans() }}</small>
                             </div>
@@ -75,6 +70,5 @@
 
     <div>
         {{ $posts->links() }}
-
     </div>
 </x-app-layout>

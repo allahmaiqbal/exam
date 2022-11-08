@@ -30,7 +30,6 @@ class PostStoreRequest extends FormRequest
             'title' => 'required|string|max:50',
             'content' => 'required|string|max:1000',
             'is_published' => 'required|boolean',
-
         ];
     }
     public function validated($key = null, $default = null)

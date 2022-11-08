@@ -4,18 +4,18 @@
             <div class="mb-3">
                  <a class="btn btn-warning" href="{{route('dashboard.post.index')}}">All Post</a>
             </div>
-            <div class="col-md-6">
 
+            <div class="col-md-6">
                 <div class="card ">
                     <div class="card-header text-center">
-                      post create
+                      Post Create
                     </div>
                     <div class="card-body">
                         <form action ="{{route('dashboard.post.store')}}" method="POST">
                             @csrf
                             <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Title</label>
-                              <input type="text" name="title"  value="{{old('title')}}"class="form-control" placeholder="title" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="exampleInputEmail1" class="form-label">Title</label>
+                                <input type="text" name="title"  value="{{old('title')}}"class="form-control" placeholder="title" id="exampleInputEmail1" aria-describedby="emailHelp">
 
                             </div>
 
@@ -29,9 +29,11 @@
                                 <select class="form-select" name="is_published" aria-label="Default select example">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
-                                  </select>
+                                </select>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Submit</button>
+
                         </form>
                     </div>
                   </div>

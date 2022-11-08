@@ -18,17 +18,13 @@ class PostControllr extends Controller
     public function index()
     {
         $post_query = Post::query();
-
         // eager load author
         $post_query->with('author:id,name');
 
-        // load current user's post
-        //  $post_query->ofCurrentUser();
-
         if (request('orderBy') === 'oldest') {
-            $post_query->oldest('published_at');
+            $post_query->oldest('created_at');
         } else {
-            $post_query->latest('published_at');
+            $post_query->latest('created_at');
         }
 
         $posts = $post_query->paginate();
@@ -69,7 +65,8 @@ class PostControllr extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('post.show',compact('post'));
     }
 
     /**
@@ -81,7 +78,7 @@ class PostControllr extends Controller
     public function edit($id)
     {
 
-       $post = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
         return view('post.edit',compact('post'));
     }
 
@@ -97,8 +94,6 @@ class PostControllr extends Controller
         // $request->validated();
 
         $post = Post::findOrFail($id);
-    //   $All_validated_data = $request->validated();
-        // Post::create($All_validated_data);
         $post->update($request->validated());
         return redirect() ->back()->with('Post Edit Succssfully');
 
@@ -112,6 +107,9 @@ class PostControllr extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return redirect() ->back()->with('Post Delete Succssfully');
+
     }
 }

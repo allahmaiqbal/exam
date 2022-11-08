@@ -2,12 +2,10 @@
 
 namespace App\Helpers;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class UniqueSlugGenerator
 {
-
     public $slug;
 
     public static function builder(
@@ -37,12 +35,10 @@ class UniqueSlugGenerator
         $this->slug = Str::slug($value);
     }
 
-
     public function generate(): string
     {
         return $this->checkUnique();
     }
-
 
     private function checkUnique(int $attempt = 1): string
     {

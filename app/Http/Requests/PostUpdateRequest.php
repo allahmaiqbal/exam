@@ -18,16 +18,12 @@ class PostUpdateRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
+
     public function rules()
     {
         return [
             'title' => 'required|string|max:191',
-            'content' => 'required|string|max:5000',
+            'content' => 'required|string|max:1000',
             'is_published' => 'required|boolean',
         ];
     }

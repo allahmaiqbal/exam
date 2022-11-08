@@ -7,16 +7,7 @@
         <div class="card-body">
             <form  method="POST" action="{{ route('login') }}">
                 @csrf
-                {{-- <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" name="email" value="{{old('email')}}" class="form-control" id="exampleInputEmail1" placeholder="Entaer your Email"  aria-describedby="emailHelp">
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                </div> --}}
-				<div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
-                                placeholder="Write your email address">
-                 </div>
+
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" name="email"  value ="{{old('email')}}" id="email" placeholder="Entaer your Email"  aria-describedby="emailHelp">
@@ -40,6 +31,7 @@
               </div>
               @endif
           </div>
+
           <div class="card-footer text-muted">
 
             <p class="text-center">&copy {{config('app.name')}} - {{Date('Y')}}</p>
