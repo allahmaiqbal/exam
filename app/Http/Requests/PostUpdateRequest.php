@@ -18,7 +18,6 @@ class PostUpdateRequest extends FormRequest
         return true;
     }
 
-
     public function rules()
     {
         return [
@@ -30,12 +29,13 @@ class PostUpdateRequest extends FormRequest
 
     public function validated($key = null, $default = null)
     {
-       return $validated_data = parent::validated();
+     $validated = parent::validated();
 
-        return $validated_data + [
+        return $validated + [
             'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug', $this->route()->originalParameter('post')),
             'published_at' => $this->boolean('is_published') ? now() : null,
         ];
+
     }
 
 }

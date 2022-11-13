@@ -1,51 +1,57 @@
 <x-guest-layout>
     <div class="card">
         <div class="card-header">
-          Login
+            Login
         </div>
         <div class="card-body">
-             <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" value="{{old('name')}}" placeholder="Entaer your name"  aria-describedby="emailHelp">
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    <label class="form-label" for="exampleInputEmail1">Name</label>
+                    <input class="form-control" id="exampleInputEmail1" name="name" type="text"
+                        value="{{ old('name') }}" aria-describedby="emailHelp" placeholder="Entaer your name">
+                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" name="email"  value ="{{old('email')}}" id="exampleInputEmail1" placeholder="Entaer your Email"  aria-describedby="emailHelp">
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <label class="form-label" for="exampleInputEmail1">Email address</label>
+                    <input class="form-control" id="exampleInputEmail1" name="email" type="email"
+                        value="{{ old('email') }}" aria-describedby="emailHelp" placeholder="Entaer your Email">
+                    <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Mobile</label>
-                    <input type="text" class="form-control" name="phone" value="{{old('mobile')}}" id="exampleInputEmail1" placeholder="Entaer your Email"  aria-describedby="emailHelp">
-                    <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                    <label class="form-label" for="exampleInputEmail1">Mobile</label>
+                    <input class="form-control" id="exampleInputEmail1" name="phone" type="text"
+                        value="{{ old('phone') }}" aria-describedby="emailHelp"
+                        placeholder="Entaer your mobile number">
+                    <x-input-error class="mt-2" :messages="$errors->get('phone')" />
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" name="password"  class="form-control" placeholder="Enter your password" id="exampleInputPassword1">
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    <label class="form-label" for="exampleInputPassword1">Password</label>
+                    <input class="form-control" id="exampleInputPassword1" name="password" type="password"
+                        placeholder="Enter your password">
+                    <x-input-error class="mt-2" :messages="$errors->get('password')" />
                 </div>
 
 
                 <div class="mb-3">
-                    <label for="password_confirmation" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" placeholder="Enter your password" name="password_confirmation" id="password_confirmation">
-                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    <label class="form-label" for="password_confirmation">Confirm Password</label>
+                    <input class="form-control" id="password_confirmation" name="password_confirmation" type="password"
+                        placeholder="Enter your password">
+                    <x-input-error class="mt-2" :messages="$errors->get('password_confirmation')" />
                 </div>
-                     <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
 
-              @if(Route::has('login'))
-              <div class="text-center">
-                  <p> Already registered ? <a href="{{ route('login') }}">Login</a></p>
-              </div>
-              @endif
-          </div>
-          <div class="card-footer text-muted">
-            <p class="text-center">&copy {{config('app.name')}} - {{Date('Y')}}</p>
-         </div>
+            @if (Route::has('login'))
+                <div class="text-center">
+                    <p> Already registered ? <a href="{{ route('login') }}">Login</a></p>
+                </div>
+            @endif
         </div>
+        <div class="card-footer text-muted">
+            <p class="text-center">&copy {{ config('app.name') }} - {{ Date('Y') }}</p>
+        </div>
+    </div>
     </div>
     {{-- <x-auth-card>
         <x-slot name="logo">

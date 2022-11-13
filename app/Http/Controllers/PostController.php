@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use Illuminate\Http\Request;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
-use App\Models\Post;
 
-class PostControllr extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -48,9 +49,10 @@ class PostControllr extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(PostStoreRequest $request)
     {
-        $all_validated_data = $request->validated();
+    $all_validated_data = $request->validated();
 
         Post::create($all_validated_data);
 
@@ -94,13 +96,12 @@ class PostControllr extends Controller
      */
     public function update(PostUpdateRequest $request, $id)
     {
-
-        $post = Post::findOrFail($id);
-        $post->update($request->validated());
+       $post = Post::findOrFail($id);
+       $post->update($request->validated());
 
         return redirect()
             ->back()
-            ->with('Post Edit Succssfully');
+            ->withSuccess('Post Update Succssfully');
     }
 
     /**
