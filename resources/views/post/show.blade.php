@@ -14,10 +14,10 @@
                             <h5 class="card-title d-inline">{{ $post->title }}</h5><br><br>
 
                             <span class="fw-bold">Post Title :</span>
-                            <p class="card-text  d-inline">{{ $post->content }}</p><br><br>
+                            <p class="card-text d-inline">{{ $post->content }}</p><br><br>
 
                             <span class="fw-bold">Author Name :</span>
-                            <p class="card-text  d-inline">{{ $post->Author->name }}</p><br><br>
+                            <p class="card-text d-inline">{{ $post->author->name }}</p><br><br>
 
                             <span class="fw-bold">Latest Update :</span>
                             <small class="text-muted"> {{ $post->updated_at->diffForHumans() }}</small>
