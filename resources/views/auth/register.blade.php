@@ -9,20 +9,19 @@
                 <div class="mb-3">
                     <label class="form-label" for="exampleInputEmail1">Name</label>
                     <input class="form-control" id="exampleInputEmail1" name="name" type="text"
-                        value="{{ old('name') }}" aria-describedby="emailHelp" placeholder="Entaer your name">
+                        value="{{ old('name') }}" aria-describedby="emailHelp" placeholder="Enter your name">
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="exampleInputEmail1">Email address</label>
                     <input class="form-control" id="exampleInputEmail1" name="email" type="email"
-                        value="{{ old('email') }}" aria-describedby="emailHelp" placeholder="Entaer your Email">
+                        value="{{ old('email') }}" aria-describedby="emailHelp" placeholder="Enter your Email">
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="exampleInputEmail1">Mobile</label>
-                    <input class="form-control" id="exampleInputEmail1" name="phone" type="text"
-                        value="{{ old('phone') }}" aria-describedby="emailHelp"
-                        placeholder="Entaer your mobile number">
+                    <label class="form-label" for="phone">Mobile</label>
+                    <input class="form-control" id="phone" name="phone" type="text" value="{{ old('phone') }}"
+                        aria-describedby="emailHelp" placeholder="Entaer your mobile number">
                     <x-input-error class="mt-2" :messages="$errors->get('phone')" />
                 </div>
                 <div class="mb-3">

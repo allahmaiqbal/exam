@@ -10,9 +10,10 @@
                         <option value="latest" @selected(request('orderBy') === 'latest')> Latest</option>
                         <option value="oldest" @selected(request('orderBy') === 'oldest')> Ordest</option>
                     </select>
-                    <button class="btn btn-success  mb-2" type="submit">Search</button>
+                    <button class=" btn btn-success mb-2" type="submit">Search</button>
                 </form>
             </div>
+
             <div class="col-md-12">
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     @foreach ($posts as $post)
@@ -20,15 +21,15 @@
                             <div class="card">
                                 <div class="text-end">
                                     <a class="badge text-bg-primary"
-                                        href="{{ route('dashboard.post.show', $post->id) }}" title="View Details">
+                                        href="{{ route('dashboard.post.show', $post->slug) }}" title="View Details">
                                         Show
                                     </a>
-                                    <a class="badge text-bg-info" href="{{ route('dashboard.post.edit', $post->id) }}"
+                                    <a class="badge text-bg-info" href="{{ route('dashboard.post.edit', $post->slug) }}"
                                         title="Edit Post">
                                         Edit
                                     </a>
                                     <form class="badge text-bg-danger align-top position-relative"
-                                        action="{{ route('dashboard.post.destroy', $post->id) }}" method="POST"
+                                        action="{{ route('dashboard.post.destroy', $post->slug) }}" method="POST"
                                         onsubmit="return confirm('Are you sure want to delete this post?')">
                                         @csrf
                                         @method('DELETE')
@@ -68,7 +69,6 @@
             </div>
         </div>
     </div>
-
     <div>
         {{ $posts->links() }}
     </div>

@@ -48,5 +48,12 @@ class Post extends Model
         return $this->published_at == null;
     }
 
+    /* === route key model === */
+     public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /*  **===** All Custom Method **===**  */
+
 }

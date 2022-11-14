@@ -2,41 +2,42 @@
 
     <div class="card">
         <div class="card-header">
-          Login
+            Login
         </div>
         <div class="card-body">
-            <form  method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" name="email"  value ="{{old('email')}}" id="email" placeholder="Entaer your Email"  aria-describedby="emailHelp">
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <label class="form-label" for="email">Email address</label>
+                    <input class="form-control" id="email" name="email" type="email" value="{{ old('email') }}"
+                        aria-describedby="emailHelp" placeholder="Enter your Email">
+                    <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password"   name="password" class="form-control" placeholder="Enter your password" id="exampleInputPassword1">
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    <label class="form-label" for="exampleInputPassword1">Password</label>
+                    <input class="form-control" id="exampleInputPassword1" name="password" type="password"
+                        placeholder="Enter your password">
+                    <x-input-error class="mt-2" :messages="$errors->get('password')" />
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox"  class="form-check-input" id="exampleCheck1">
+                    <input class="form-check-input" id="exampleCheck1" type="checkbox">
                     <label class="form-check-label" for="exampleCheck1">Remember me</label>
                 </div>
-                     <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
 
-              @if(Route::has('register'))
+            @if (Route::has('register'))
                 <div class="text-center">
-                    <p> Yet Registered? <a href="{{ route('register') }}">Register</a></p>
+                    <p> Not Yet Registered? <a href="{{ route('register') }}">Register</a></p>
                 </div>
-              @endif
-          </div>
-
-          <div class="card-footer text-muted">
-
-            <p class="text-center">&copy {{config('app.name')}} - {{Date('Y')}}</p>
-          </div>
+            @endif
         </div>
+
+        <div class="card-footer text-muted">
+            <p class="text-center">&copy {{ config('app.name') }} - {{ Date('Y') }}</p>
+        </div>
+    </div>
 
     </div>
 
