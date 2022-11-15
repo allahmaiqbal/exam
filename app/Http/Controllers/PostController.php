@@ -17,19 +17,15 @@ class PostController extends Controller
     public function index()
     {
         $post_query = Post::query();
-
         // eager load author
         $post_query->with('author:id,name');
-
         // order by search
         if (request('orderBy') === 'oldest') {
             $post_query->oldest('created_at');
         } else {
             $post_query->latest('created_at');
         }
-
         $posts = $post_query->paginate();
-
         return view('post.index', compact('posts'));
     }
 
@@ -53,7 +49,6 @@ class PostController extends Controller
     public function store(PostStoreRequest $request)
     {
         $all_validated_data = $request->validated();
-
         Post::create($all_validated_data);
 
         return redirect()
@@ -69,8 +64,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        // $post = Post::findOrFail($id);
-
         return view('post.show', compact('post'));
     }
 
@@ -82,7 +75,6 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-
         // $post = Post::findOrFail($id);
         return view('post.edit', compact('post'));
     }
@@ -99,7 +91,7 @@ class PostController extends Controller
         $post->update($request->validated());
 
         return redirect()
-            ->back()
+            ->route('dashboard.post.index')
             ->withSuccess('Post has been update successfully');
     }
 
@@ -111,7 +103,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // $post = Post::findOrFail($id);
         $post->delete();
         return redirect()
             ->back()

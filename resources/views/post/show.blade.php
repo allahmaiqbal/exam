@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <div class="container min-vh-100 d-flex justify-content-center">
         <div style="min-width: 50%;">
             <div class="row">

@@ -1,9 +1,10 @@
-import './bootstrap';
-import 'bootstrap';
-import 'bootstrap/scss/bootstrap.scss';
+import "./bootstrap";
+import "./plugins";
+// import 'bootstrap';
+// import 'bootstrap/scss/bootstrap.scss';
 
-import Alpine from 'alpinejs';
+// import Alpine from 'alpinejs';
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine.start();

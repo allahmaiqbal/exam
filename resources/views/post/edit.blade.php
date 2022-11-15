@@ -11,7 +11,7 @@
                         Post Edit
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('dashboard.post.update', $post->slug) }}" method="POST">
+                        <form action="{{ route('dashboard.post.update', $post->slug) }}" method="post">
                             @method('PUT')
                             @csrf
                             <div class="mb-3">
