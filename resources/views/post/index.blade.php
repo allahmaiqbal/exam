@@ -42,10 +42,10 @@
                                 <p text-center>
                                     <span @class([
                                         'badge',
-                                        'text-bg-success' => !$post->isPublished(),
-                                        'text-bg-warning' => $post->isPublished(),
+                                        'text-bg-success' => $post->isPublished(),
+                                        'text-bg-warning' => !$post->isPublished(),
                                     ])>
-                                        @if ($post->isPublished())
+                                        @if (!$post->isPublished())
                                             Not
                                         @endif
                                         Published

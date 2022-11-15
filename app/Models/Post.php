@@ -33,6 +33,12 @@ class Post extends Model
         return $query->where('user_id', auth()->id());
     }
 
+    /* === route key model === */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /*  === Local Scope end  ===  */
 
     /*  **===** All Custom Method **===**  */
@@ -45,15 +51,8 @@ class Post extends Model
 
     public function isPublished(): bool
     {
-        return $this->published_at == null;
-    }
-
-    /* === route key model === */
-     public function getRouteKeyName()
-    {
-        return 'slug';
+        return $this->published_at !== null;
     }
 
     /*  **===** All Custom Method **===**  */
-
 }
