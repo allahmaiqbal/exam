@@ -26,11 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Model::preventLazyLoading(! $this->app->isProduction());
-        //
-        // Str::macro('uniqueSlug', function (string $model, string $value, string $column = 'slug', int $except = null, ?string $exceptColumnName = 'id' ) {
-        //     return UniqueSlugGenerator::builder($model, $value, $column, $except , $exceptColumnName,)
-        //         ->generate();
-        // });
+        //eger loading
+        Model::preventLazyLoading(!$this->app->isProduction());
     }
 }
